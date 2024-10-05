@@ -33,7 +33,13 @@ public:
     long duration = pulseIn(echoPin, HIGH);
     long distance = (duration * 0.034) / 2;
 
-    return (distance < 100);  // Return true if the object is within 100cm
+     if (distance < 11) { // Return true if the object is within 10cm
+        Serial.print("Ultrasonic range: ");
+        Serial.println(distance);
+        return true;
+     }
+
+    return false;
   }
 };
 

@@ -31,15 +31,15 @@ public:
   void monitorSensors() {
     if (securityModeActive) {
       if (sensorService->isPirDetected() && sensorService->isUltrasonicDetected()) {
-        triggerAlarm();
+        triggerAlarm(5);
       }
     }
   }
 
-  void triggerAlarm() {
+  void triggerAlarm(int dlySec = 30) {
     buzzerService->playError();
     ledService->turnOnRed();
-    delay(30000);  // Error mode for 30 seconds
+    delay(dlySec * 1000);  // Error mode for default 30/dly seconds
     ledService->turnOffRed();
     buzzerService->stop();
   }
@@ -53,8 +53,8 @@ public:
       buzzerService->stop();
     } else {
       invalidAttempts++;
-      if (invalidAttempts >= 3) {
-        triggerAlarm();
+      if (invalidAttempts >= 5) {
+        triggerAlarm(3);
         invalidAttempts = 0;
       } else {
         ledService->turnOnYellow();

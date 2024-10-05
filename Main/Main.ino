@@ -1,6 +1,6 @@
 #include "src/Start.h"
 
-Start start(true);       // Initializing system
+Start start(false);       // Initializing system
 
 
 void setup() {
@@ -10,5 +10,5 @@ void setup() {
 }
 
 void loop() {
-  start.test();
+  start.loop();
 }

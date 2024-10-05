@@ -80,16 +80,18 @@ public:
     }
   }
 
+  bool firstTime = true;
   // Test keypad input
   void testKeypad() {
-    Serial.println("Testing Keypad (Press any key)...");
+    if (firstTime) Serial.println("Testing Keypad (Press any key)...");
     char key = keypadService->getKey();
     if (key) {
       Serial.print("Key Pressed: ");
       Serial.println(key);
     } else {
-      Serial.println("No key pressed.");
+      if (firstTime)  Serial.println("No key pressed.");
     }
+    if (firstTime) firstTime = false;
   }
 };
 

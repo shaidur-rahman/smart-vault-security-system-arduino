@@ -50,9 +50,7 @@ public:
   void loop() {
     // Check for intruders
     securityController.monitorSensors();
-
-    // Assume this is a keypress validation check (replace with keypad logic)
-    char enteredKey = 'X';  // This would be replaced with actual keypad logic
+    char enteredKey = keypadService.getKey();
 
     if (enteredKey == '1') {  // Example of a valid passkey
       securityController.validatePasskey(true);
